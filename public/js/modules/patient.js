@@ -1,3 +1,5 @@
+// import { Tarifs } from "./doctor"
+
 export class Patients {
     constructor(nom, maladie, argent,  poche, etat, traitement) {
         this.nom = nom
@@ -13,10 +15,15 @@ export class Patients {
     }
 
     medicamment() {
-
+        // if (this.traitement === traitement) {
+        //     this.argent -= 
+        // }
     }
 
     payer(){
-        this.argent -= 50
+        // this.argent -= 50
+        if (this.etat === "malade") {
+            this.argent -= 50
+        }
     }
 }

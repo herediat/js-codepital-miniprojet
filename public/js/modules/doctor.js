@@ -11,6 +11,7 @@ export class Doctor{
         if (a.maladie == "mal indenté" || a.maladie == "unsave" || a.maladie == "404" || a.maladie == "azmatique" || a.maladie == "syntaxError") {
             this.argent += 50
         }
+        
     }
 
     patienEntre(b){
