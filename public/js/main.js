@@ -42,26 +42,62 @@ let tarif5 = new Tarifs(`f12+doc`, 20)
 
 let fullTarifs = new Tarifs([tarif1, tarif2, tarif3, tarif4, tarif5])
 
+//########################## LIEUX #################################
+import { Lieux } from "./modules/lieux.js";
+
+let pharmacie = new Lieux("Pharmacie")
+let cimetiere = new Lieux("Cimetière")
+let tousLieux = new Lieux([pharmacie, cimetiere])
+console.log(tousLieux);
+
+
 //################### RÉcit ############################
+
+//############# PLACEMENT DES PATIENTS DANS LA SALLE D'ATTENTE #######################################
+kitty.miaul()
+
 fullPatients.forEach(el => {
 doc.salleDattente.push(el)
+// console.log(doc.salleDattente);
 })
 fullPatients.forEach(el => {
     console.log(`Dans la salle d'attente, il y'a ${doc.salleDattente.length} personnes.`);
     doc.salleDattente.shift(el)
+    
+    //############ Patients entre dans le cabinet + NOMBRE DE PATIENTS DANS LE CABINET ################
     console.log(`${el.nom} rentre dans le cabinet`);
     doc.cabinet.push(el)
-    console.log(`Il y'a actuellement ${doc.cabinet.length} personnes dans le cabinet`);
+    doc.salleDattente.splice(doc.salleDattente.indexOf(el), [])
+    console.log("Persones présentes dans la salle d'attent", doc.salleDattente);
+    // console.log(`Personnes présentes dans le cabinet ${doc.cabinet.length}`);
+    console.log("`Personnes présentes dans le cabinet", doc.cabinet);
+
+    //################# DIAGNOSTIQUE DU MÉDECIN #########################
     doc.diagnostiquer(el)
     console.log(`La maladie de ${el.nom} est ${el.maladie}`);
     console.log(`Le traitement de ${el.nom} est ${el.traitement}`);
-    el.payer()
+
+    //####################### PAIEMENT DU PATIENT AU MÉDECIN ########################
+    // console.log(el.payer(el));
     console.log(`${el.nom} a payer docteur ${doc.nom} €50`);
+
+    //########################### RESTE DES PATIENTS APRES PAIEMENT CHEZ MÉDECIN ################
     console.log(`Après son diagnostique, ${el.nom} n'a plus que €${el.argent} sur lui`);
+
+    //################ BÉNÉFICES DU MÉDECIN APRES PAIEMENT DES PATIENTS
     console.log(`La tirelire de docteur ${doc.nom} contient actuellement €${doc.argent}`);
-    console.log(`${el.nom} s'en va à la pharmacie`);
-    doc.cabinet.shift(el)
+
+    //################## DÉPLCAMENT DES PATIENTS VERS LA PHARMACIER ##########################
+    // console.log(`${el.nom} s'en va à la pharmacie`);
+    // doc.cabinet.shift(el)
+    // tousLieux.pharmacie.push(el)
+    // console.log(tousLieux.pharmacie);
+    el.goPharma(el)
+
+    //########### NOMBRE DE PATIENTS DANS LE CABINET APRES DIAGNOSTIQUES ######################
     console.log(`Il y'a actuellement ${doc.cabinet.length} personne dans le cabinet`);
+
+    //################# PRIX DES TRAIEMENTS DES PATIENTS ##############################
     console.log(`Le traitement de ${el.nom} coût ${fullTarifs.prix}`);
     console.log("_____________________________________");
 })

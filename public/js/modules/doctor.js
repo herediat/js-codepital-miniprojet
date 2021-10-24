@@ -1,3 +1,6 @@
+// import { Patients } from "./patient";
+// let fullPatients = new Patients[Marcus, Optimus, Sangoku, DarthVader, Semicolon]
+
 //########################## CLASS DOCTOR ###############################
 export class Doctor{
     constructor(nom, argent){
@@ -14,11 +17,12 @@ export class Doctor{
         
     }
 
-    patienEntre(b){
+    patienEntre(){
+        this.salleDattente.push()
 
     }
 
-    partienSort(c){
+    partienSort(){
 
     }
 }
